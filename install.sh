@@ -6,33 +6,12 @@
 sudo pacman -Syu
 
 # General stuff
-sudo pacman -S git zsh kitty dunst thunar thunar-archive-plugin tumbler gthumb fastfetch wl-clipboard otf-font-awesome --needed --noconfirm
+sudo pacman -S git zsh kitty fastfetch otf-font-awesome --needed --noconfirm
 
 # Screenshots and Screen sharing
-sudo pacman -S grim xdg-desktop-portal-hyprland xdg-desktop-portal qt5-wayland qt6-wayland --needed --noconfirm
-
-# Backlighting
-sudo pacman -S brightnessctl --needed --noconfirm
-
-# Wifi and Bluetooth
-sudo pacman -S networkmanager blueberry --needed --noconfirm
-systemctl --user --now enable bluetooth.service
-
-# Audio 
-sudo pacman -S pipewire wireplumber pipewire-pulse pavucontrol --needed --noconfirm
-systemctl --user --now enable wireplumber
-systemctl --user --now enable pipewire-pulse.service
-
-# Power Management
-sudo pacman -S htop powertop --needed --noconfirm
-
-# Styling
-sudo pacman -S nwg-look swaybg waypaper
+sudo pacman -S --needed --noconfirm
 
 # Interactive Installs
-echo "Install Waybar (y/n)?"
-read waybar 
-[ "$waybar" = "y" ] && sudo pacman -S waybar --needed --noconfirm
 echo "Install Neovim (y/n)?"
 read neovim 
 [ "$neovim" = "y" ] && sudo pacman -S neovim --needed --noconfirm
@@ -59,17 +38,6 @@ read discord
 [ "$discord" = "y" ] && sudo pacman -S discord --needed --noconfirm
 
 # AUR and Other Stuff
-echo "Install SWWW and Waypaper ?"
-read swwwaypaper
-if [[ "$swwwaypaper" = "y" ]]; then
-    mkdir ~/builds && cd ~/builds
-    git clone https://github.com/LGFae/swww.git
-    (cd swww && cargo build --release && cp target/release/swww target/release/swww-daemon ~/.local/bin)
-
-    git clone https://aur.archlinux.org/waypaper-git.git
-    (cd waypaper-git && makepkg -src && sudo pacman -U waypaper-git-*)
-fi
-
 echo "Install ASDF NodeJS Runtime (y/n)?"
 read asdfnode
 if [[ "$asdfnode" = "y" ]]; then
@@ -77,9 +45,9 @@ if [[ "$asdfnode" = "y" ]]; then
 	asdf install nodejs latest
 	asdf global nodejs latest
 fi
-# echo "Install Docker (y/n)?"
-# read docker
-# [ "$docker" = "y" ] && sudo pamac install docker-desktop --noconfirm
+echo "Install Docker (y/n)?"
+read docker
+[ "$docker" = "y" ] && sudo pamac install docker-desktop --noconfirm
 
 # NeoVim Configuration
 # Language Server installs
