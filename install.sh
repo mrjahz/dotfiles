@@ -8,9 +8,6 @@ sudo pacman -Syu
 # General stuff
 sudo pacman -S git zsh kitty fastfetch otf-font-awesome --needed --noconfirm
 
-# Screenshots and Screen sharing
-sudo pacman -S --needed --noconfirm
-
 # Interactive Installs
 echo "Install Neovim (y/n)?"
 read neovim 
@@ -38,16 +35,21 @@ read discord
 [ "$discord" = "y" ] && sudo pacman -S discord --needed --noconfirm
 
 # AUR and Other Stuff
-echo "Install ASDF NodeJS Runtime (y/n)?"
-read asdfnode
-if [[ "$asdfnode" = "y" ]]; then
-	asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
-	asdf install nodejs latest
-	asdf global nodejs latest
+echo "Install Mise (y/n)?"
+read mise
+if [[ "$mise" = " y" ]]; then
+    curl https://mise.jdx.dev/mise-latest-linux-x64 > ~/.local/bin/mise
+    chmod +x ~/.local/bin/mise
+fi
+
+echo "Install NodeJS Runtime (with mise) (y/n)?"
+read misenode
+if [[ "$misenode" = "y" ]]; then
+    mise install nodejs
 fi
 echo "Install Docker (y/n)?"
 read docker
-[ "$docker" = "y" ] && sudo pamac install docker-desktop --noconfirm
+[ "$docker" = "y" ] && sudo pacman -S docker --needed --noconfirm 
 
 # NeoVim Configuration
 # Language Server installs

@@ -24,17 +24,6 @@ alias glo='git log --pretty="oneline"'
 alias vim='nvim'
 alias cat='bat'
 
-
-# Asdf post-install
-. "$HOME/.asdf/asdf.sh"
-
-
-# Golang setup with ASDF
-GOLANG_SET_ENV=~/.asdf/plugins/golang/set-env.zsh
-if [ -f $GOLANG_SET_ENV ]; then
-	. ~/.asdf/plugins/golang/set-env.zsh
-fi
-export GOPATH=$HOME/go
-export ASDF_GOLANG_MOD_VERSION_ENABLED=false
-export PATH=$HOME/.local/bin:/usr/local/opt/llvm/bin:$PATH:$GOROOT/bin:$GOPATH/bin
-export _JAVA_AWT_WM_NONREPARENTING=1
+export PATH=$HOME/.local/bin:$PATH
+# Mise Post Install
+eval "$(mise activate zsh)"
