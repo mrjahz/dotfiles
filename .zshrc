@@ -21,6 +21,7 @@ fastfetch
 # Aliases
 alias gpf='git push --force-with-lease'
 alias glo='git log --pretty="oneline"'
+alias gcane='git commit --amend --no-edit'
 alias vim='nvim'
 alias cat='bat'
 
