@@ -8,6 +8,18 @@ sudo pacman -Syu
 # General stuff
 sudo pacman -S git zsh kitty fastfetch otf-font-awesome --needed --noconfirm
 
+# Pop Shell & Launcher
+echo "Install Pop Shell and Launcher (y/n)?"
+read popshell
+if [[ "$popshell" ]] then
+    mkdir ~/builds
+    (cd ~/builds && git clone https://github.com/pop-os/shell.git)
+    (cd ~/builds/shell && make local-install)
+    gsettings --schemadir ~/.local/share/gnome-shell/extensions/pop-shell@system76.com/schemas set org.gnome.shell.extensions.pop-shell activate-launcher "['<Super>space']"
+    sudo pacman -Sy pop-launcher
+fi
+echo "Pop Shell Installed, but requires logout/login"
+
 # Interactive Installs
 echo "Install Neovim (y/n)?"
 read neovim 
