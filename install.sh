@@ -67,5 +67,9 @@ if [[ "$lsp_rust" = "y" ]]; then
     rustup update stable
 fi
 
+echo "Load dconf settings (y/n)?"
+read load_dconf
+[ "$load_dconf" = "y" ] && dconf load / < ~/.config/dconf.conf
+
 # Cleanup
 sudo pacman -Qtdq | sudo pacman -Rns -
