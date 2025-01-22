@@ -49,7 +49,7 @@ if [[ "$misenode" = "y" ]]; then
 fi
 echo "Install Docker (y/n)?"
 read docker
-[ "$docker" = "y" ] && sudo pacman -S docker --needed --noconfirm 
+[ "$docker" = "y" ] && sudo pacman -S docker docker-compose --needed --noconfirm 
 
 # NeoVim Configuration
 # Language Server installs
